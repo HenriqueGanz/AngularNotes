@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,21 +15,23 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 import { HomeComponent } from './pages/home/home.component';
-import { NoteComponent } from './pages/note/note.component';
+import { CreateNoteFormComponent } from './pages/home/create-note-form/create-note-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NoteComponent,
+    CreateNoteFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSlideToggleModule,
@@ -40,7 +43,9 @@ import { NoteComponent } from './pages/note/note.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
