@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Update Note</h1>
+
+<form class="flex flex-col w-full">
+  <mat-form-field class="example-full-width">
+    <mat-label>Title</mat-label>
+    <input matInput placeholder="Title here sir" [formControl]="title">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput placeholder="Description here please sir" [formControl]="description"></textarea>
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button (click)="updateNote()">Update</button>
+</div>

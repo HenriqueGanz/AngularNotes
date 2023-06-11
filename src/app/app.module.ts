@@ -21,6 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { HomeComponent } from './pages/home/home.component';
 import { CreateNoteFormComponent } from './pages/home/create-note-form/create-note-form.component';
+import { UpdateNoteFormComponent } from './pages/home/update-note-form/update-note-form.component';
 
 
 @NgModule({
@@ -28,6 +29,8 @@ import { CreateNoteFormComponent } from './pages/home/create-note-form/create-no
     AppComponent,
     HomeComponent,
     CreateNoteFormComponent,
+    UpdateNoteFormComponent,
+
   ],
   imports: [
     BrowserModule,

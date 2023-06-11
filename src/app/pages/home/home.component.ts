@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { HttpClient } from '@angular/common/http';
 import { CreateNoteFormComponent } from './create-note-form/create-note-form.component';
+import { UpdateNoteFormComponent } from './update-note-form/update-note-form.component';
 
-interface Note {
+export interface Note {
   id: number;
   title: string;
   description: string;
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
 
   createNote(): void {
     const dialogRef = this.dialog.open(CreateNoteFormComponent, {
-      width: '450px'
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -46,11 +47,26 @@ export class HomeComponent implements OnInit {
   getNotes() {
     this.httpClient.get<Note[]>('http://localhost:3333/notes?user_id=5').subscribe((data) => {
       this.notes = data;
+      console.log(data)
     });
   }
 
   deleteNote(id: number) {
     this.httpClient.delete(`http://localhost:3333/notes/${id}`).subscribe(() => this.getNotes())
   }
+
+  updateNote(note: Note) {
+    const dialogRef = this.dialog.open(UpdateNoteFormComponent, {
+      width: '450px',
+      data: {
+        note
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getNotes();
+    });
+  }
 }
+
 
