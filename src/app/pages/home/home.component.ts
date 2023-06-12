@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { NoteService } from '../service/note.service';
 import { CreateNoteFormComponent } from './create-note-form/create-note-form.component';
 import { UpdateNoteFormComponent } from './update-note-form/update-note-form.component';
 
@@ -16,22 +16,20 @@ export interface Note {
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  longText = `The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
-  from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was
-  originally bred for hunting.`;
+  longText = ``;
 
   notes: Note[] = [];
 
   public dialog: MatDialog;
-  private httpClient: HttpClient;
+  private noteService: NoteService;
 
-  constructor(dialog: MatDialog, httpClient: HttpClient) {
+  constructor(dialog: MatDialog, noteService: NoteService) {
+    this.noteService = noteService;
     this.dialog = dialog;
-    this.httpClient = httpClient;
   }
 
   ngOnInit(): void {
-    this.getNotes();
+    this.noteService.getNotes();
   }
 
   createNote(): void {
@@ -40,19 +38,19 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getNotes();
+      this.noteService.getNotes();
     });
   }
 
   getNotes() {
-    this.httpClient.get<Note[]>('http://localhost:3333/notes?user_id=5').subscribe((data) => {
+    this.noteService.getNotes().subscribe((data) => {
       this.notes = data;
       console.log(data)
     });
   }
 
   deleteNote(id: number) {
-    this.httpClient.delete(`http://localhost:3333/notes/${id}`).subscribe(() => this.getNotes())
+    this.noteService.deleteNote(id).subscribe(() => this.getNotes())
   }
 
   updateNote(note: Note) {

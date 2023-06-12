@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Note } from '../home.component';
+import { NoteService } from '../../service/note.service';
 
 @Component({
   selector: 'app-update-note-form',
@@ -14,7 +15,7 @@ export class UpdateNoteFormComponent {
   description = new FormControl('', [Validators.required]);
 
   constructor(
-    public dialogRef: MatDialogRef<UpdateNoteFormComponent>, private httpClient: HttpClient,
+    public dialogRef: MatDialogRef<UpdateNoteFormComponent>, private noteService: NoteService,
     @Inject(MAT_DIALOG_DATA) private data: { note: Note }
   ) {
     this.title.setValue(data.note.title);
@@ -25,7 +26,7 @@ export class UpdateNoteFormComponent {
     this.dialogRef.close();
   }
 
-  updateNote() {
-    this.httpClient.put(`http://localhost:3333/notes/${this.data.note.id}`, { title: this.title.value, description: this.description.value }).subscribe(() => this.cancel())
+  updateNote(data: Note) {
+    this.noteService.updateNote().subscribe(() => this.cancel())
   }
 }

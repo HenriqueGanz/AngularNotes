@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {MatDialogRef} from '@angular/material/dialog';
+import { NoteService } from '../../service/note.service';
 
 @Component({
   selector: 'app-create-note-form',
@@ -13,7 +14,7 @@ export class CreateNoteFormComponent {
   description = new FormControl('', [Validators.required]);
 
   constructor(
-    public dialogRef: MatDialogRef<CreateNoteFormComponent>, private httpClient: HttpClient
+    public dialogRef: MatDialogRef<CreateNoteFormComponent>, private noteService: NoteService
   ) {}
 
   cancel(): void {
@@ -21,7 +22,7 @@ export class CreateNoteFormComponent {
   }
 
   createNote() {
-    this.httpClient.post('http://localhost:3333/notes/5', {title:this.title.value, description:this.description.value}).subscribe(() => this.cancel());
+    this.noteService.createNote().subscribe(() => this.cancel());
   }
 
 }
