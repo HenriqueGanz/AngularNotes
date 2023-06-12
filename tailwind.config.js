@@ -5,7 +5,11 @@ module.exports = {
     './components/**/*.{html,ts}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'bounce-slow': 'bounce 3s linear infinite ',
+      },
+    },
   },
   plugins: [],
 }

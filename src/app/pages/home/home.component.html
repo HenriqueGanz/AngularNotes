@@ -1,12 +1,13 @@
 <div class="w-full h-full flex flex-col overflow-hidden">
-    <mat-toolbar class="flex justify-center">
-        <span class="font-mono text-2xl subpixel-antialiased underline decoration-indigo-500">Angular Notes</span>
+    <mat-toolbar class="flex justify-center min-w-sm">
+        <span class="p-1 font-mono text-5xl subpixel-antialiased underline decoration-indigo-500 hover:no-underline hover:cursor-pointer hover:text-indigo-500">Angular Notes</span>
     </mat-toolbar>
 
-    <main class="bg-violet-950 h-full flex justify-center items-center flex-col">
-        <button mat-raised-button class="w-52 m-4" (click)="createNote()">Create Note</button>
-        <section class="h-4/6 overflow-y-auto m-1">
-            <mat-card class="note1 m-3" *ngFor="let note of notes">
+    <main class="bg-indigo-800 h-full flex justify-center items-center flex-col">
+        <button mat-raised-button class="w-52 m-4 ease-out transition duration-300 hover:scale-105" (click)="createNote()"><span class="text-2xl">Create Note</span></button>
+        <img src="../../../assets/downArrow.svg" class="animate-bounce-slow w-12 h-12 fill-white">
+        <section class="h-4/6 overflow-y-auto m-1 ease-out duration-300">
+            <mat-card class="note1 m-3 max-w-xl" *ngFor="let note of notes">
                 <mat-card-header>
                     <mat-card-title>{{note.title}}</mat-card-title>
                 </mat-card-header>
