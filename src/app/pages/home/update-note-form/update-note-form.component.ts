@@ -1,32 +1,35 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Note } from '../home.component';
-import { NoteService } from '../../service/note.service';
+import { Note, NoteService } from '../../service/note.service';
 
 @Component({
   selector: 'app-update-note-form',
   templateUrl: './update-note-form.component.html',
   styleUrls: ['./update-note-form.component.css']
 })
-export class UpdateNoteFormComponent {
-  title = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
+export class UpdateNoteFormComponent implements OnInit{
+  public noteForm: FormGroup;
 
   constructor(
     public dialogRef: MatDialogRef<UpdateNoteFormComponent>, private noteService: NoteService,
-    @Inject(MAT_DIALOG_DATA) private data: { note: Note }
-  ) {
-    this.title.setValue(data.note.title);
-    this.description.setValue(data.note.description);
-   }
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) private data: { note: Note },
+  ) {}
+
+  ngOnInit(): void {
+    this.noteForm = this.formBuilder.group({
+      title: [this.data.note.title, [Validators.required]],
+      description: [this.data.note.description, [Validators.required]]
+    })
+  }
 
   cancel(): void {
     this.dialogRef.close();
   }
 
-  updateNote(data: Note) {
-    this.noteService.updateNote().subscribe(() => this.cancel())
+  updateNote() {
+    const {title, description} = this.noteForm.value;
+    this.noteService.updateNote({id: this.data.note.id, title, description}).subscribe(() => this.cancel())
   }
 }

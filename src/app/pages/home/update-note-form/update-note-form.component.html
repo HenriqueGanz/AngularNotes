@@ -1,13 +1,13 @@
 <h1 mat-dialog-title>Update Note</h1>
-<form class="flex flex-col w-full">
+<form class="flex flex-col w-full" [formGroup]="noteForm">
   <mat-form-field class="example-full-width">
     <mat-label>Title</mat-label>
-    <input matInput placeholder="Title here sir" [formControl]="title">
+    <input matInput placeholder="Title here sir" formControlName="title" name="title">
   </mat-form-field>
 
   <mat-form-field class="example-full-width m-1">
     <mat-label>Description</mat-label>
-    <textarea matInput placeholder="Description please" [formControl]="description"></textarea>
+    <textarea matInput placeholder="Description please" formControlName="description" name="description"></textarea>
   </mat-form-field>
 </form>
 

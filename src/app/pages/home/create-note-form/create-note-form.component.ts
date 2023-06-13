@@ -1,28 +1,37 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import {MatDialogRef} from '@angular/material/dialog';
-import { NoteService } from '../../service/note.service';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Note, NoteService } from '../../service/note.service';
+
 
 @Component({
   selector: 'app-create-note-form',
   templateUrl: './create-note-form.component.html',
   styleUrls: ['./create-note-form.component.css']
 })
-export class CreateNoteFormComponent {
-  title = new FormControl('', [Validators.required]);
-  description = new FormControl('', [Validators.required]);
+export class CreateNoteFormComponent implements OnInit {
+  public noteForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<CreateNoteFormComponent>, private noteService: NoteService
-  ) {}
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<CreateNoteFormComponent>,
+    private noteService: NoteService
+  ) { }
+
+  ngOnInit(): void {
+    this.noteForm = this.formBuilder.group({
+      title: ['', [Validators.required]],
+      description: ['', [Validators.required]]
+    })
+  }
 
   cancel(): void {
     this.dialogRef.close();
+    this.noteForm.reset();
   }
 
   createNote() {
-    this.noteService.createNote().subscribe(() => this.cancel());
+    this.noteService.postNote(this.noteForm.value).subscribe(() => this.cancel());
   }
 
 }

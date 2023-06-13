@@ -48,7 +48,7 @@ import { UpdateNoteFormComponent } from './pages/home/update-note-form/update-no
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
 
   ],
   providers: [],

@@ -4,7 +4,7 @@
     </mat-toolbar>
 
     <main class="bg-indigo-800 h-full flex justify-center items-center flex-col">
-        <button mat-raised-button class="w-52 m-4 ease-out transition duration-300 hover:scale-105" (click)="createNote()"><span class="text-2xl">Create Note</span></button>
+        <button mat-raised-button class="w-52 m-4 ease-out transition duration-300 hover:scale-105" (click)="openCreateNoteForm()"><span class="text-2xl">Create Note</span></button>
         <img src="../../../assets/downArrow.svg" class="animate-bounce-slow w-12 h-12 fill-white">
         <section class="h-4/6 overflow-y-auto m-1 ease-out duration-300">
             <mat-card class="note1 m-3 max-w-xl" *ngFor="let note of notes">
@@ -15,7 +15,7 @@
                     <p>{{note.description}}</p>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-raised-button color="primary" class="m-1" (click)="updateNote(note)">Update</button>
+                    <button mat-raised-button color="primary" class="m-1" (click)="openUpdateNoteForm(note)">Update</button>
                     <button mat-raised-button color="primary" class="m-1" (click)="deleteNote(note.id)">Delete</button>
                 </mat-card-actions>
             </mat-card>
