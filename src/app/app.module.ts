@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 
@@ -49,7 +51,9 @@ import { UpdateNoteFormComponent } from './pages/home/update-note-form/update-no
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
-
+    MatSelectModule,
+    MatChipsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

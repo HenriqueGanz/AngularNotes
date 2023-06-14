@@ -6,6 +6,7 @@ export interface Note {
   id: number;
   title: string;
   description: string;
+  tags: string[];
 }
 
 @Injectable({
@@ -28,7 +29,6 @@ export class NoteService {
   constructor(dialog: MatDialog, httpClient: HttpClient,) {
     this.httpClient = httpClient;
     this.dialog = dialog;
-
   }
 
   public postNote(note: any) {
@@ -46,6 +46,7 @@ export class NoteService {
   public updateNote(note: Note) {
     return this.httpClient.put(`http://localhost:3333/notes/${note.id}`, note, this.httpOptions);
   }
+
 }
 
 

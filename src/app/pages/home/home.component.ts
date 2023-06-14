@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {CdkDragDrop, moveItemInArray, CdkDrag, CdkDropList} from '@angular/cdk/drag-drop';
 import { NoteService } from '../service/note.service';
 import { CreateNoteFormComponent } from './create-note-form/create-note-form.component';
 import { UpdateNoteFormComponent } from './update-note-form/update-note-form.component';
@@ -12,7 +13,6 @@ import { Note } from '../service/note.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  longText = ``;
 
   notes: Note[];
 
@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateNotes();
+    console.log(this.notes)
   }
 
   private updateNotes() {

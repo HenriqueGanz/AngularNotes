@@ -29,7 +29,7 @@ export class UpdateNoteFormComponent implements OnInit{
   }
 
   updateNote() {
-    const {title, description} = this.noteForm.value;
-    this.noteService.updateNote({id: this.data.note.id, title, description}).subscribe(() => this.cancel())
+    const {title, description, tags} = this.noteForm.value;
+    this.noteService.updateNote({id: this.data.note.id, title, description, tags}).subscribe(() => this.cancel())
   }
 }
