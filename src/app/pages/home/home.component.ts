@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateNotes();
-    console.log(this.notes)
+   ;
   }
 
   private updateNotes() {

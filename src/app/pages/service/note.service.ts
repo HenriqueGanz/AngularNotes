@@ -6,7 +6,10 @@ export interface Note {
   id: number;
   title: string;
   description: string;
-  tags: string[];
+  tags: {
+    id: number;
+    name: string;
+  }[];
 }
 
 @Injectable({

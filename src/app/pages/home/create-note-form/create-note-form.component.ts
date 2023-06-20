@@ -29,7 +29,7 @@ export class CreateNoteFormComponent implements OnInit {
     })
   }
 
-  createNote() {
+  public createNote() {
     const tags = this.toppings.value;
     
     const {title, description} = this.noteForm.value;
@@ -37,7 +37,7 @@ export class CreateNoteFormComponent implements OnInit {
     console.log(tags)
   }
 
-  cancel(): void {
+  public cancel(): void {
     this.dialogRef.close();
     this.noteForm.reset();
   }
